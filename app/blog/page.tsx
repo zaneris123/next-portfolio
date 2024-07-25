@@ -5,7 +5,7 @@ import { PostPreview } from "@/components/postPreview";
 import { title } from "@/components/primitives";
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
