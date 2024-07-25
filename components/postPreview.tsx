@@ -1,4 +1,5 @@
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
+import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+import { Link } from "@nextui-org/link";
 
 export const PostPreview = ({ post }: any) => {
   return (
@@ -20,6 +21,21 @@ export const PostPreview = ({ post }: any) => {
           }}
         />
       </CardBody>
+      <CardFooter>
+        <p className="text-default-300 text-sm">
+          {new Date(post.date).toLocaleDateString()}
+        </p>
+        <Link
+          isExternal
+          className="ml-auto"
+          color="primary"
+          href={post.link}
+          rel="noopener noreferrer"
+          size="sm"
+        >
+          Read More
+        </Link>
+      </CardFooter>
     </Card>
   );
 };
