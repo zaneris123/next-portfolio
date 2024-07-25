@@ -2,7 +2,7 @@ import { Card, CardBody, CardHeader } from "@nextui-org/card";
 
 export const PostPreview = ({ post }: any) => {
   return (
-    <Card className="border-2 m-5 w-full">
+    <Card className="border-2 w-full mt-6">
       <CardHeader>
         <h2
           dangerouslySetInnerHTML={{
