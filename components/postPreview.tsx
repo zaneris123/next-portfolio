@@ -2,8 +2,9 @@ import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Link } from "@nextui-org/link";
 
 export const PostPreview = ({ post }: any) => {
+  //TODO: Click expand to view full post
   return (
-    <Card className="border-2 w-full mt-6">
+    <Card className="w-full mt-6" isBlurred>
       <CardHeader>
         <h2
           dangerouslySetInnerHTML={{
@@ -33,7 +34,7 @@ export const PostPreview = ({ post }: any) => {
           rel="noopener noreferrer"
           size="sm"
         >
-          Read More
+          Read on Wordpress
         </Link>
       </CardFooter>
     </Card>

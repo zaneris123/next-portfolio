@@ -9,21 +9,32 @@ export default function BlogPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [fetchAttempts, setFetchAttempts] = useState(0);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(
-          `https://public-api.wordpress.com/wp/v2/sites/zanerisblog.wordpress.com/posts?page=${currentPage}`,
+          `https://public-api.wordpress.com/wp/v2/sites/zanerisblog.wordpress.com/posts?page=${currentPage}`
         );
         const data = await response.json();
+        if (!Array.isArray(data) && fetchAttempts < 3) {
+          setFetchAttempts(fetchAttempts + 1);
+          return fetchPosts();
+        }
 
         setTotalPages(Number(response.headers.get("X-WP-TotalPages")));
         setPosts([...posts, ...data]);
       } catch (error) {
-        alert(error);
+        setFetchAttempts(fetchAttempts + 1);
+        if (fetchAttempts < 3) {
+          return fetchPosts();
+        } else {
+          alert(error);
+        }
       } finally {
         setIsLoading(false);
+        setFetchAttempts(0);
       }
     };
     fetchPosts();
