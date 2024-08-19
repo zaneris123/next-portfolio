@@ -12,7 +12,7 @@ export default function BlogPage() {
   const [fetchAttempts, setFetchAttempts] = useState(0);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchPosts: () => Promise<void> = async () => {
       try {
         const response = await fetch(
           `https://public-api.wordpress.com/wp/v2/sites/zanerisblog.wordpress.com/posts?page=${currentPage}`
