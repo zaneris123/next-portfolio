@@ -1,10 +1,13 @@
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Link } from "@nextui-org/link";
+import { useState } from "react";
 
 export const PostPreview = ({ post }: any) => {
-  //TODO: Click expand to view full post
+  const [expanded, setExpanded] = useState(false);
+  const paragraphs = post.content.rendered.split('</p>');
+
   return (
-    <Card className="w-full mt-6" isBlurred>
+    <Card className={expanded ? 'transition ease-in-out w-full mt-6 h-fit' : 'transition ease-in-out h-32 w-full mt-6'} isPressable isBlurred onPress={() => setExpanded(!expanded)}>
       <CardHeader>
         <h2
           dangerouslySetInnerHTML={{
@@ -13,14 +16,10 @@ export const PostPreview = ({ post }: any) => {
           className="text-xl font-bold"
         />
       </CardHeader>
-      <CardBody className="text-default-400 h-46">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: post.excerpt.rendered
-              .replace("</p>", "</p><br>")
-              .replace(/<a[^>]*class="more-link"[^>]*>.*?<\/a>/gi, ""),
-          }}
-        />
+      <CardBody className="text-clip overflow-hidden w-full text-default-400 space-y-3">
+        {paragraphs.map((paragraph: string, index: number) => (
+          <div dangerouslySetInnerHTML={{ __html: paragraph }} key={index} />
+        ))}
       </CardBody>
       <CardFooter>
         <p className="text-default-300 text-sm">
