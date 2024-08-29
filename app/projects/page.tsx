@@ -1,10 +1,11 @@
 "use client"
 import { useEffect, useState } from "react";
+import { PortfolioCards } from "@/components/portfolioCards";
 
 import { title } from "@/components/primitives";
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -66,6 +67,7 @@ export default function ProjectsPage() {
     return (
       <div>
         <h1 className={title()}>Projects</h1>
+        <PortfolioCards projects={projects} />
       </div>
     );
   }
