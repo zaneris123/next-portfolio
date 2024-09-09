@@ -15,7 +15,6 @@ import { useState } from "react";
 export const PortfolioCards = ({ projects }: { projects: any[] }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
-  console.log(projects);
   interface Project {
     id: string;
     title: { rendered: string };
