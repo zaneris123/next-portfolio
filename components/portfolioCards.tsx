@@ -18,6 +18,7 @@ export const PortfolioCards = ({ projects }: { projects: any[] }) => {
   console.log(projects);
   interface Project {
     id: string;
+    title: { rendered: string };
     link: string;
     content: {
       rendered: string;
@@ -64,10 +65,14 @@ export const PortfolioCards = ({ projects }: { projects: any[] }) => {
       >
         {currentProject && (
           <ModalContent>
-            {(onClose) => (
+            {() => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
-                  Modal Title
+                  <h2
+                    dangerouslySetInnerHTML={{
+                      __html: currentProject.title.rendered,
+                    }}
+                  />
                 </ModalHeader>
                 <ModalBody>
                   <p
