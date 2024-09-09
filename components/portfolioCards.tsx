@@ -1,4 +1,3 @@
-import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import {
   Modal,
@@ -9,14 +8,17 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import Image from "next/image";
+
+import { Link } from "@nextui-org/link";
 import { useState } from "react";
 
 export const PortfolioCards = ({ projects }: { projects: any[] }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
-
+  console.log(projects);
   interface Project {
     id: string;
+    link: string;
     content: {
       rendered: string;
     };
@@ -60,30 +62,37 @@ export const PortfolioCards = ({ projects }: { projects: any[] }) => {
         scrollBehavior="inside"
         className="w-full fixed"
       >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Modal Title
-              </ModalHeader>
-              <ModalBody>
-                {currentProject && (
+        {currentProject && (
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Modal Title
+                </ModalHeader>
+                <ModalBody>
                   <p
                     dangerouslySetInnerHTML={{
                       __html: currentProject.content.rendered,
                     }}
                     key={currentProject.id}
                   />
-                )}
-              </ModalBody>
-              <ModalFooter>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
+                </ModalBody>
+                <ModalFooter>
+                  <Link
+                    isExternal
+                    className="ml-auto"
+                    color="primary"
+                    href={currentProject.link}
+                    rel="noopener noreferrer"
+                    size="sm"
+                  >
+                    Read on Wordpress
+                  </Link>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        )}
       </Modal>
     </div>
   );
