@@ -1,7 +1,7 @@
-"use client"
-import { PortfolioCards } from "@/components/portfolioCards";
+"use client";
 import { useEffect, useState } from "react";
 
+import { PortfolioCards } from "@/components/portfolioCards";
 import { title } from "@/components/primitives";
 
 export default function ProjectsPage() {
@@ -15,11 +15,11 @@ export default function ProjectsPage() {
     const fetchProjects: () => Promise<void> = async () => {
       try {
         const response = await fetch(
-          `https://public-api.wordpress.com/wp/v2/sites/zanerisportfolio.wordpress.com/posts?page=${currentPage}&_embed`
+          `https://public-api.wordpress.com/wp/v2/sites/zanerisportfolio.wordpress.com/posts?page=${currentPage}&_embed`,
         );
         const data = await response.json();
+
         console.log(data[0]._embedded["wp:featuredmedia"][0].source_url);
-        
 
         if (!Array.isArray(data) && fetchAttempts < 3) {
           setFetchAttempts(fetchAttempts + 1);
