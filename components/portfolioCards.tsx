@@ -23,7 +23,7 @@ export const PortfolioCards = ({ projects }: { projects: any[] }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 flex-wrap">
+    <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 flex-wrap">
       {projects.map((project: any) => (
         <Card
           key={project.id}

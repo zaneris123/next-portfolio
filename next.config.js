@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['zanerisportfolio.wordpress.com', 'public-api.wordpress.com', 'via.placeholder.com','picsum.photos'],
-    }
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'zanerisportfolio.wordpress.com',
+          },
+          {
+            protocol: 'https',
+            hostname: 'public-api.wordpress.com',
+          },
+        ],
+      }
 }
 
 module.exports = nextConfig
