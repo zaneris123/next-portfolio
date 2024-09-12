@@ -30,19 +30,19 @@ export const PortfolioCards = ({ projects }: { projects: any[] }) => {
         <Card
           key={project.id}
           isPressable
-          className="relative justify-center"
+          className="relative justify-center p-2"
           onPress={() => {
             setCurrentProject(project);
             onOpen();
           }}
         >
-          <CardHeader className="z-10 top-1 flex-col items-center justify-start">
+          <CardHeader className="p-0 z-10 top-1 flex-col items-center justify-center h-12">
             <h2
               dangerouslySetInnerHTML={{ __html: project.title.rendered }}
               className="text-medium font-bold"
             />
           </CardHeader>
-          <CardBody className="flex justify-center items-center">
+          <CardBody className="p-1 flex justify-center items-center">
             {project._embedded && project._embedded["wp:featuredmedia"] && (
               <Image
                 alt={project.title.rendered}
