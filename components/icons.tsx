@@ -10,8 +10,8 @@ export const Logo: React.FC<IconSvgProps> = ({
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={538.117}
-    height={177.275}
+    viewBox="0 0 538.117 177.275"
+    preserveAspectRatio="xMinYMin meet"
     {...props}
   >
     <path
